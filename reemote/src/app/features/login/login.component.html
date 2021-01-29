@@ -1,0 +1,33 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-5 mx-auto">
+            <div class="myform form ">
+                <div class="logo mb-3">
+                    <div class="col-md-12 text-center">
+                        <h1>Giriş Yap</h1>
+                    </div>
+                </div>
+                <form action="" method="post" name="login">
+                    <div  class="form-group">
+                        <label for="exampleInputEmail1">E-mail Adresi</label>
+                        <input #email type="email" name="email" class="form-control" id="email" aria-describedby="emailHelp"
+                            placeholder="E-mail Girin">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Şifre</label>
+                        <input #password type="password" name="password" id="password" class="form-control"
+                            aria-describedby="emailHelp" placeholder="Şifre Girin">
+                    </div>
+
+                    <div class="col-md-12 text-center ">
+                        <button (click)="login(email.value,password.value)"  class=" btn btn-block mybtn btn-primary tx-tfm">Giriş Yap</button>
+                    </div>
+
+                    <div class="form-group">
+                        <p class="text-center">Hesabınız Yok Mu? <a [routerLink]="['/register']"  id="signup">Kayıt Olun</a></p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>

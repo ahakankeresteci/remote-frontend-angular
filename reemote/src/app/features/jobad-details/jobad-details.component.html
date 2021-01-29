@@ -1,0 +1,23 @@
+<div class="jumbotron my-0 ">
+    <h1 class="display-4 ml-5 mr-auto d-inline">{{jobad.title}}</h1>
+    <button [routerLink]="['/updateJobad',jobad._id]" routerLinkActive="router-link-active"  *ngIf="isMyPage" class="btn btn-success btn-sm d-inline mr-2 ml-5">İlanı Düzenle</button>
+    <button (click)="deleteJobad()"  *ngIf="isMyPage" class="btn btn-danger btn-sm d-inline mr-2 ml-5">İlanı Kaldır</button>
+    <p *ngIf="!isMyPage" class="lead ml-5">İlanı Yayınlayan: <a [routerLink]="['/userdetail',jobad.author_user_name]"  routerLinkActive="router-link-active">{{jobad.author_user_name}}</a></p>
+    <p class="lead ml-5">{{jobad.content}} </p>
+    
+    <hr class="my-4 ml-5">
+    
+
+
+    <div class="lead ml-5">
+        <img class="img-fluid" src="{{jobad.image_url}}" alt="Job-advertisement-picture">
+        <div class="d-inline row">
+            <p *ngIf="!isMyPage" class="d-inline ml-5 mr-2">{{jobad.author_user_name}}'in istediği ücret: {{jobad.price}}₺
+
+                <a [routerLink]="['/chat']" routerLinkActive="router-link-active"  class="btn btn-success btn-lg d-inline block mr-2 ml-auto" role="button">Mesaj Gönder</a>
+            </p>
+            
+        </div>
+    
+    </div>
+</div>

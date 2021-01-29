@@ -1,0 +1,58 @@
+<div class="w-75 mx-auto mt-5 mb-4">
+    <form [formGroup]="jobadForm">
+
+        <div class="form-group">
+            <label>İlan Başlığı</label>
+            <input #title formControlName="title" class="form-control" placeholder="Başlık girin..">
+        </div>
+        <div *ngIf="jobadForm.controls['title'].invalid && (jobadForm.controls['title'].dirty || jobadForm.controls['title'].touched)"
+            class="alert alert-danger">
+            <div *ngIf="jobadForm.controls['title'].errors.required">
+                İlan başlığı gerekli
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <label>Kategori Seçin</label>
+            <select #category class="form-control">
+                <option>Yazılım ve Teknoloji</option>
+                <option>Grafik ve Tasarım</option>
+                <option>Ses ve Müzik</option>
+                <option>Yazı ve Çeviri</option>
+            </select>
+        </div>
+
+
+        <div class="form-group">
+            <label>İlan Açıklaması</label>
+            <textarea #content formControlName="content" class="form-control" rows="3"></textarea>
+        </div>
+        <div *ngIf="jobadForm.controls['content'].invalid && (jobadForm.controls['content'].dirty || jobadForm.controls['content'].touched)"
+            class="alert alert-danger">
+            <div *ngIf="jobadForm.controls['content'].errors.required">
+                İlan açıklaması gerekli
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <label>Ücret</label>
+            <input #price type="number" formControlName="price" class="form-control"
+                placeholder="Beklediğiniz ücreti girin..">
+        </div>
+        <div *ngIf="jobadForm.controls['price'].invalid && (jobadForm.controls['price'].dirty || jobadForm.controls['price'].touched)"
+            class="alert alert-danger">
+            <div *ngIf="jobadForm.controls['price'].errors.required">
+                Geçersiz ücret
+            </div>
+        </div>
+
+
+        <button [disabled]="jobadForm.pristine || jobadForm.invalid"
+            (click)="createJobad(title.value,category.value,content.value,price.value)" class="btn btn-success">İlanı
+            Yayınla</button>
+
+
+    </form>
+</div>

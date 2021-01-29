@@ -1,0 +1,87 @@
+<div class="container">
+    <div *ngIf="!isUpdateJobads" class="main-body">
+
+       
+        <div class="row gutters-sm mt-5">
+            <div class="col-md-4 mb-3">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="d-flex flex-column align-items-center text-center">
+                            <img src="assets/images/profilePlaceholder.png" alt="Admin" class="rounded-circle"
+                                width="150">
+                            <div class="mt-3">
+                                <h4>{{user.first_name}} {{user.last_name}}</h4>
+                                <p class="text-secondary mb-1">{{user.job}}</p>
+                                <p class="text-muted font-size-sm">{{user.location}}</p>
+                                <button (click)="follow()" class="btn btn-success mr-1">Takip Et</button>
+                                <button (click)="message()" class="btn btn-outline-success ml-1">Mesaj At</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="col-md-8">
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <h6 class="mb-0">Ad</h6>
+                            </div>
+                            <div class="col-sm-9 text-secondary">
+                                {{user.first_name}}
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <h6 class="mb-0">Soyad</h6>
+                            </div>
+                            <div class="col-sm-9 text-secondary">
+                                {{user.last_name}}
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <h6 class="mb-0">Şehir</h6>
+                            </div>
+                            <div class="col-sm-9 text-secondary">
+                                {{user.location}}
+                            </div>
+                        </div>
+                        <hr>
+                        <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                            <h6 class="mb-0"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" class="feather feather-globe mr-2 icon-inline">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <line x1="2" y1="12" x2="22" y2="12"></line>
+
+                                </svg>Website</h6>
+                            <span class="text-secondary">{{user.website}}</span>
+                        </li>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <h3 *ngIf="!isUpdateJobads">{{user.user_name}} İlanları</h3>
+    <h2 *ngIf="isUpdateJobads" class="mt-4">İlanlarınız</h2>
+    <h6 *ngIf="isUpdateJobads" class="mb-4">Düzenlemek İstediğiniz İlanı Seçin</h6>
+    <hr>
+    <div class="row gutters-sm">
+        <div *ngFor="let jobad of user.jobads" class="col-sm-6 mb-3">
+            <a [routerLink]="['/jobads', jobad._id]" routerLinkActive="router-link-active" style="color: black;">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h6 class="d-flex align-items-center mb-3">
+                               {{jobad.title}} / {{jobad.price}}₺</h6>
+                        <small>{{jobad.category}}</small>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>

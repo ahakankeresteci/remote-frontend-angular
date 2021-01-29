@@ -1,0 +1,105 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-5 mx-auto">
+            <div id="second">
+                <div class="myform form ">
+                    <div class="logo mb-3">
+                        <div class="col-md-12 text-center">
+                            <h1>Kayıt Ol</h1>
+                        </div>
+                    </div>
+                    <form action="#" name="registration" [formGroup]="userRegisterForm">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Kullanıcı Adı</label>
+                            <input #username type="text" formControlName="user_name" class="form-control"
+                                 placeholder="Kullanıcı Adınızı Girin..">
+                        </div>
+                        <div *ngIf="userRegisterForm.controls['user_name'].invalid && (userRegisterForm.controls['user_name'].dirty || userRegisterForm.controls['user_name'].touched)"
+                            class="alert alert-danger">
+                            <div *ngIf="userRegisterForm.controls['user_name'].errors.required">
+                                Kullanıcı adı gerekli
+                            </div>
+                            <div *ngIf="userRegisterForm.controls['user_name'].errors.minlength">
+                                Kullanıcı adı en az 4 karakter olmalı
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Ad</label>
+                            <input #firstname type="text" formControlName="first_name"class="form-control"
+                                placeholder="Adınızı Girin..">
+                        </div>
+                        <div *ngIf="userRegisterForm.controls['first_name'].invalid && (userRegisterForm.controls['first_name'].dirty || userRegisterForm.controls['first_name'].touched)"
+                            class="alert alert-danger">
+                            <div *ngIf="userRegisterForm.controls['first_name'].errors.minlength">
+                                Ad en az 2 karakter olmalı
+                            </div>
+                            <div *ngIf="userRegisterForm.controls['first_name'].errors.required">
+                                Ad gerekli
+                            </div>
+                        </div>
+
+
+
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Soyad</label>
+                            <input #lastname type="text" formControlName="last_name"  class="form-control" 
+                                 placeholder="Soyadınızı Girin..">
+                        </div>
+                        <div *ngIf="userRegisterForm.controls['last_name'].invalid && (userRegisterForm.controls['last_name'].dirty || userRegisterForm.controls['last_name'].touched)"
+                            class="alert alert-danger">
+                            <div *ngIf="userRegisterForm.controls['last_name'].errors.required">
+                                Soyad gerekli
+                            </div>
+                            <div *ngIf="userRegisterForm.controls['last_name'].errors.minlength">
+                                Soyad en az 2 karakter olmalı
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input #email type="email" formControlName="email" class="form-control" 
+                                 placeholder="E-mail Girin..">
+                        </div>
+                        <div *ngIf="userRegisterForm.controls['email'].invalid && (userRegisterForm.controls['email'].dirty || userRegisterForm.controls['email'].touched)"
+                            class="alert alert-danger">
+                            <div *ngIf="userRegisterForm.controls['email'].errors.required">
+                                Email adresi boş bırakılamaz
+                            </div>
+                            <div *ngIf="userRegisterForm.controls['email'].errors.email">
+                                Geçersiz email adresi
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="password">Şifre</label>
+                            <input #password formControlName="password" type="password" class="form-control"
+                                 placeholder="Şifre Girin..">
+                        </div>
+                        <div *ngIf="userRegisterForm.controls['password'].invalid && (userRegisterForm.controls['password'].dirty || userRegisterForm.controls['password'].touched)"
+                            class="alert alert-danger">
+                            <div *ngIf="userRegisterForm.controls['password'].errors.required">
+                                Şifre boş bırakılamaz
+                            </div>
+                            <div *ngIf="userRegisterForm.controls['password'].errors.pattern" > 
+                                Şifre en az 8 karakter olmalı ve en az bir rakam,bir küçük harf,bir büyük harf ve bir özel karakter ( *.!@$%^&()[]:;><,.?/~_+-=|\ ) içermelidir.
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-12 text-center mb-3">
+                            <button [disabled]="userRegisterForm.pristine || userRegisterForm.invalid" (click)="register(username.value, firstname.value ,lastname.value, email.value, password.value)" type="submit" class=" btn btn-block mybtn btn-primary tx-tfm">Kayıt Ol</button>
+                        </div>
+                        <div class="col-md-12 ">
+                            <div class="form-group">
+                                <p class="text-center"><a [routerLink]="['/login']" routerLinkActive="router-link-active"  id="signin">Zaten Hesabım Var</a></p>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>

@@ -1,0 +1,77 @@
+<div class="wrapper" style="margin: 0;
+display: flex;
+flex-direction: column;
+min-height: 92vh;">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
+
+
+    <a class="navbar-brand ml-5" routerLink="/category/">
+      <img src="assets/images/logo.png" alt="reemote" class="img-responsive" width="30" height="30"
+        class="d-inline-block align-top"> Reemote
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
+      aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse " id="navbarTogglerDemo02">
+      <ul class="navbar-nav mt-2 mt-lg-0">
+        <li *ngFor="let category of categories" class="nav-item active ">
+          <a routerLink="/category/{{category}}" class="nav-link ">{{category}}</a>
+
+        </li>
+
+      </ul>
+
+      <li *ngIf="getUsername() && isLoggedIn()" onchange="getUsername()" class=" active nav-link mr-4 ml-auto"
+        style="color: #fff;">
+        Merhaba {{username}}
+      </li>
+
+      <button *ngIf="!isLoggedIn()" routerLink="login" class="btn btn-success mr-2 ml-auto">Giriş Yap</button>
+      <button *ngIf="!isLoggedIn()" routerLink="register" class="btn btn-success mr-2 ml-2">Kayıt Ol</button>
+
+      <button *ngIf="isLoggedIn()" routerLink="createpost" class="btn btn-success mr-2 ml-2">İlan Oluştur</button>
+      <button *ngIf="isLoggedIn()" (click)="logout()" routerLink="/" class="btn btn-secondary mr-2 ml-2">Çıkış
+        Yap</button>
+
+
+    </div>
+
+  </nav>
+
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
+    <form class="form-inline ml-5 mr-auto">
+      <input #searchBar class="form-control ml-0 mr-sm-2 input-lg" (keyup.enter)="searchFunc(searchBar.value)"
+        type="text" placeholder="İlan başlıkları.." aria-label="Search" style="width: 700px;">
+      <button (click)="searchFunc(searchBar.value)" class="btn btn-secondary my-2 my-sm-0 ">Ara</button>
+    </form>
+    <div *ngIf="isLoggedIn()" class="btn-group dropleft mr-2 ml-auto">
+      <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+        aria-expanded="false">
+        <img src="assets/images/settingsicon.png" width="20" height="20" alt="Ayarlar">
+      </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <a class="dropdown-item" [routerLink]="['/updateProfile']" routerLinkActive="router-link-active">Profil
+          Ayarları</a>
+        <a class="dropdown-item" [routerLink]="['/userdetail/',username,'jobads']" routerLinkActive="router-link-active">İlanları
+          Düzenle</a>
+      </div>
+    </div>
+  </nav>
+
+  <router-outlet></router-outlet>
+</div>
+
+<div class="spacer" style="flex: 1;"> </div>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-0 mt-auto" style="height: 8vh;">
+  <div>
+    <div class="collapse navbar-collapse " id="navbarTogglerDemo02">
+      <ul class="navbar-nav ml-5 mt-2 mt-lg-0">
+        <li class="nav-item active"><a class="nav-link" href="#">Hakkında</a></li>
+        <li class="nav-item active"><a class="nav-link" href="#">İletişim</a></li>
+        <li class="nav-item active"><a class="nav-link" href="#">Yardım</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>

@@ -1,0 +1,103 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-5 mx-auto">
+            <div id="second">
+                <div class="myform form ">
+                    <div class="logo mb-3">
+                        <div class="col-md-12 text-center mt-4 mb-4">
+                            <h2>{{user.user_name}} Hesap Bilgileri</h2>
+                        </div>
+                    </div>
+                    <form [formGroup]="userValidator" (change)="user" action="#" novalidate>
+                        <div class="form-group ">
+                            <label for="exampleInputEmail1">Kullanıcı Adı</label>
+                            <input #username type="text" class="form-control" formControlName="user_name"
+                                value="{{user.user_name}}">
+                        </div>
+                        <div *ngIf="userValidator.controls['user_name'].invalid && (userValidator.controls['user_name'].dirty || userValidator.controls['user_name'].touched)"
+                            class="alert alert-danger">
+                            <div *ngIf="userValidator.controls['user_name'].errors.required">
+                                Kullanıcı adı gerekli
+                            </div>
+                            <div *ngIf="userValidator.controls['user_name'].errors.minlength">
+                                Kullanıcı adı en az 4 karakter olmalı
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Ad</label>
+                            <input #firstname type="text" name="firstname" class="form-control" id="firstname"
+                                formControlName="first_name" value="{{user.first_name}}">
+                        </div>
+                        <div *ngIf="userValidator.controls['first_name'].invalid && (userValidator.controls['first_name'].dirty || userValidator.controls['first_name'].touched)"
+                            class="alert alert-danger">
+                            <div *ngIf="userValidator.controls['first_name'].errors.minlength">
+                                Ad en az 2 karakter olmalı
+                            </div>
+                            <div *ngIf="userValidator.controls['first_name'].errors.required">
+                                Ad gerekli
+                            </div>
+
+                        </div>
+
+
+
+
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Soyad</label>
+                            <input #lastname type="text" class="form-control" formControlName="last_name"
+                                value="{{user.last_name}}">
+                        </div>
+                        <div *ngIf="userValidator.controls['last_name'].invalid && (userValidator.controls['last_name'].dirty || userValidator.controls['last_name'].touched)"
+                            class="alert alert-danger">
+                            <div *ngIf="userValidator.controls['last_name'].errors.required">
+                                Soyad gerekli
+                            </div>
+                            <div *ngIf="userValidator.controls['last_name'].errors.minlength">
+                                Soyad en az 2 karakter olmalı
+                            </div>
+
+
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Şehir</label>
+                            <input #location type="location" class="form-control" formControlName="location"
+                                aria-describedby="emailHelp" value="{{user.location}}">
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Meslek</label>
+                            <input #job type="job" class="form-control" formControlName="job"
+                                aria-describedby="emailHelp" value="{{user.job}}">
+                        </div>
+
+
+
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Website</label>
+                            <input #website type="website" name="password" id="password" class="form-control"
+                                formControlName="website" aria-describedby="emailHelp" value="{{user.website}}">
+                        </div>
+
+
+
+                        <div class="col-md-12 text-center mb-3">
+                            <button [disabled]="userValidator.pristine || userValidator.invalid"
+                                onchange="userValidator.valid"
+                                (click)="update(username.value, firstname.value ,lastname.value,location.value,job.value,website.value)"
+                                type="submit" class=" btn btn-block mybtn btn-primary tx-tfm">Değişiklikleri
+                                Kaydet</button>
+                            <button (click)="deleteProfile()" type="delete"
+                                class=" btn btn-block mybtn btn-danger tx-tfm mt-5">Hesabı Kaldır</button>
+
+                        </div>
+
+                    </form>
+                 
+                </div>
+            </div>
+        </div>
+    </div>

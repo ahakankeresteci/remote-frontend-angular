@@ -1,0 +1,52 @@
+<div class="main-content  mx-auto w-75 my-0 d-flex align-items-stretch">
+  <div class="section-content section-content-p30">
+    <div class="container-fluid">
+      <div *ngIf="jobads?.length != 0" class="mt-4">
+        <div class="mr-2">
+          <select id="pageSize" class="custom-select w-25" (change)="updatePageSize($event.target.value)">
+            <option value="5">Sayfa Boyutu</option>
+            <option value="5">5</option>
+            <option value="10">10</option>
+            <option value="20">20</option>
+            <option value="30">30</option>
+          </select>
+        </div>
+      </div>
+      <div class="row ml-5 mr-5 mt-5 mb-2">
+        <div *ngFor="let jobad of jobads" class="card border-light mr-3" style="width: 35vh;">
+
+          <a routerLink="jobads/{{jobad._id}}">
+            <img class="card-img-top" src="assets/images/jobads/placeholder.png" alt="Card image cap">
+          </a>
+
+          <div class="card-body">
+            <h5 class="card-title">{{jobad.title}}</h5>
+            <div class="d-block mb-2">
+            <div class="price d-inline">{{jobad.price}}₺ / </div>
+            <a [routerLink]="['/userdetail', jobad.author_user_name]" routerLinkActive="router-link-active"
+              class="ml-auto mr-1 " style="color: black;">Paylaşan: {{jobad.author_user_name}}</a>
+            </div>
+
+            <a routerLink="jobads/{{jobad._id}}" class="btn btn-success">Açıklamaya Git</a>
+
+          </div>
+        </div>
+
+        <div *ngIf="jobads?.length == 0" class="alert alert-warning mr-5 my-auto">
+          Aradığınız Kriterlere Uygun İlan Bulunamadı... :(
+        </div>
+        <div *ngIf="jobads?.length == 0" class="my-auto">
+          <button [routerLink]="['/']" class="btn btn-secondary">Anasayfaya Dön</button>
+        </div>
+
+      </div>
+
+      <div *ngIf="jobads?.length != 0" class="footer-pagination mr-0 ml-auto">
+        <ngb-pagination class="d-inline mr-0 pr-0" [(page)]="pageNumber" [(pageSize)]="pageSize"
+          [(collectionSize)]="totalElements" (pageChange)="listJobads()" [maxSize]="5" [boundaryLinks]="true" style="color:gray;"> 
+        </ngb-pagination>
+      </div>
+
+    </div>
+  </div>
+</div>
